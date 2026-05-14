@@ -1,0 +1,1 @@
+Create a thread and pass a intiger value to it. Thread should print: "Received value: 42"

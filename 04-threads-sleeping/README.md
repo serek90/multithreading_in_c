@@ -1,0 +1,1 @@
+Create 3 threads and make them work for random time (1-5 seconds, you can use sleep) and after it finish print how much time it was working.

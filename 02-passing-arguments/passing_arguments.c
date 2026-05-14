@@ -14,6 +14,6 @@ int main() {
     *args = 42;
     pthread_create(&thread, NULL, thread_cb, args);
     pthread_join(thread, NULL);
-    printf("Finish operation successfully!\n");
+    printf("All workers done!\n");
     return 0;
 }

@@ -1,3 +1,32 @@
+# 07-semaphore-access-control
+
+## Goal
+
+Learn how semaphores can be used to limit access to shared resources in a multithreaded environment.
+
+In this exercise, a printer can only handle **2 threads at the same time**.
+
+---
+
+## Task
+
+Create a simulation of a shared printer system using POSIX semaphores.
+
+### Requirements
+
+- Create **8 threads**
+- Each thread wants to use the printer
+- Simulate printing with:
+
+```c
+sleep(10);
+```
+
+- Use a semaphore to allow only **2 threads simultaneously**
+- Remaining threads must wait until a printer slot becomes available
+
+---
+
 ## Example Output
 
 ```txt

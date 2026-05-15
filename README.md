@@ -24,6 +24,7 @@ This repository contains small projects and exercises that gradually introduce:
 | 04-threads-sleeping | Multiple threads working |
 | 05-race-condition | Race conditions |
 | 06-mutex-basics | Mutex synchronization |
+| 07-semaphore-basics | Semaphore synchronization |
 
 
 ## Build

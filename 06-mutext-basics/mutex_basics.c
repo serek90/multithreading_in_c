@@ -16,12 +16,15 @@ void *thread_func(void *args) {
 int main() {
     const int threads_num = 10;
     pthread_t threads[threads_num];
+    pthread_mutex_init(&mutex, NULL);
 
     for(int i = 0; i < threads_num; i++)
         pthread_create(&threads[i], NULL, thread_func, NULL);
 
     for(int i = 0; i < threads_num; i++)
         pthread_join(threads[i], NULL);
+
+    pthread_mutex_destroy(&mutex);
 
     printf("All workers done!\nglobal counter = %llu\n", global_ctr);    
     return 0;

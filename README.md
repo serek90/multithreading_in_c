@@ -25,6 +25,7 @@ This repository contains small projects and exercises that gradually introduce:
 | 05-race-condition | Race conditions |
 | 06-mutex-basics | Mutex synchronization |
 | 07-semaphore-basics | Semaphore synchronization |
+| 08-parallel-array-sum | Parallel array processing |
 
 
 ## Build

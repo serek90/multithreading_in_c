@@ -65,9 +65,12 @@ void *thread_func(void *args) {
     printf("Worker %d start performing tasks\n", *(int *)args);
     while(1) {
         pthread_mutex_lock(&thread_pool.mutex);
-        if(queue_empty(&thread_pool.queue)) {
-            printf("Worker %d: queue empty waiting to finish\n", *(int*)args);
+        while(queue_empty(&thread_pool.queue) && !thread_pool.shutdown) {
+            printf("Worker %d waiting for tasks...\n", *(int *)args);
             pthread_cond_wait(&thread_pool.cond, &thread_pool.mutex);
+        }
+
+        if(queue_empty(&thread_pool.queue) && thread_pool.shutdown) {
             pthread_mutex_unlock(&thread_pool.mutex);
             printf("Worker %d finished its job\n", *(int*)args);
             break;
@@ -101,6 +104,13 @@ void thread_pool_run(void) {
         pthread_create(&thread_pool.workers[i], NULL, thread_func, &thread_args[i]);
     }
 
+    sleep(100);
+    printf("[main]: Send signal to finish\n");
+    pthread_mutex_lock(&thread_pool.mutex);
+    thread_pool.shutdown = true;
+    pthread_cond_broadcast(&thread_pool.cond);
+    pthread_mutex_unlock(&thread_pool.mutex);
+
     for(int i = 0; i < POOL_SIZE; i++)
         pthread_join(thread_pool.workers[i], NULL);
 }
@@ -109,8 +119,12 @@ void thread_pool_run(void) {
 int main() {
     thread_pool_queue_fill(&thread_pool);
     thread_pool_run();
-    // Need to fix this signal
-    pthread_cond_signal(&thread_pool.cond);
+    
     printf("All workers are done!\n");
+    
+    pthread_mutex_destroy(&thread_pool.mutex);
+    pthread_cond_destroy(&thread_pool.cond);
+    queue_destroy(&thread_pool.queue);
+    
     return 0;
 }

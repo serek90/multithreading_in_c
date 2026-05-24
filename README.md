@@ -28,6 +28,7 @@ This repository contains small projects and exercises that gradually introduce:
 | 08-parallel-array-sum | Parallel array processing |
 | 08a-false-sharing | Cache line loading problem |
 | 10-producer-consumer | mutexes and CVs |
+| 11- thread-return-value | return value from thread |
 
 
 ## Build

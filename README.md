@@ -29,6 +29,7 @@ This repository contains small projects and exercises that gradually introduce:
 | 08a-false-sharing | Cache line loading problem |
 | 10-producer-consumer | mutexes and CVs |
 | 11- thread-return-value | return value from thread |
+| 12-detached-threads | Stopping threads from main |
 
 
 ## Build
